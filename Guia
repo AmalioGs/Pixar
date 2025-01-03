@@ -1,14 +1,16 @@
 DIA:
-Base de datos
-
-Diseño web (https://excalidraw.com/):
-  Rutas
-  Usuarios
-  Paginas
-  Etc.
+¿Vamos a utilizar context?
 
 Carpetas:
   Config
+    DB
   Middleware
-  
-¿Vamos a utilizar context?
+    single
+    (Añadir foto en la review??? (Array para las fotos))
+
+Paginas:
+  Routes:
+    Modular:
+      Register
+      Login
+      Home
