@@ -6,6 +6,7 @@ import logger from 'morgan';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
 //import { executeQuery } from './config/db.js'; PONEMOS ESTO SIMPLEMENTE PARA PROBAR LA BASE DE DATOS. NO VA AQUÍ!
+import userRouter from './modules/user/user.routes.js'
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

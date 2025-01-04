@@ -24,6 +24,7 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
+      "react/prop/types": "disable", //CON ESTO QUITAMOS EL SUBRAYADO ROJO DE CHILDREN EN EL CONTEXTPROVIDER.JSX
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
