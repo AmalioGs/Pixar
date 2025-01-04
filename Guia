@@ -1,12 +1,5 @@
 DIA:
 
-Carpetas:
-  Config
-    DB
-  Middleware
-    single
-    (Añadir foto en la review??? (Array para las fotos))
-
 Paginas:
   Routes:
     Modular:

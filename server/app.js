@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
+//import { executeQuery } from './config/db.js'; PONEMOS ESTO SIMPLEMENTE PARA PROBAR LA BASE DE DATOS. NO VA AQUÍ!
 
 const __filename = fileURLToPath(import.meta.url);
 
