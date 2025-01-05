@@ -1,7 +1,7 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
+import { fetchData } from '../../../Helpers/axiosHelper.js'
 
 const initialValue = {
   user_name: "",
@@ -27,7 +27,7 @@ export const Register = () => {
     }
   }  
 
-  const onSubmit = () =>{
+  const onSubmit = async() =>{
     if(!register.user_name || !register.user_lastname || !register.user_email || !register.user_password || !register.repPassword){
       setMsg("No puede haber ningún campo vacío")
 
@@ -38,17 +38,17 @@ export const Register = () => {
       setMsg("Debes aceptar los términos y condiciones")
       
     }else{
-      axios
-          .post('http://localhost:4000/user/register', register)
-          .then((res)=>{
-            console.log(res);
-          })
-
-          .catch((err)=>{
-            if(err){
-              setMsg(err.response.data.msg)
-            }
-          })
+      try {
+        const res = await fetchData("user/register", "post", register);
+        console.log(res);
+        navigate('/login');
+        
+      } catch (error) {
+        if(error){
+          console.log(error);
+          setMsg(error.response.data)
+        }
+      }
     }
   }
 

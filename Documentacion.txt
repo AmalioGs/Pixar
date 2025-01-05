@@ -59,12 +59,27 @@ Nos vamos al back/modules/user:
   Para ello creamos carpeta utils:
     'server/utils/hashUtils.js'
   En hashUtils:
-    Importamos bcrypt.
-    Exportamos hashPassword (async) y encryptamos tantas veces como queramos entre paréntesis, lo normal, 10.
+    - Importamos bcrypt.
+    - Exportamos hashPassword (async) y encryptamos tantas veces como queramos entre paréntesis, lo normal, 10.
 
   En controller:
-    Creamos la constante hash y nos traemos el hashPassword del hashUtils(se importa automáticamente si lo tenemos abierto).
-    En el result = cambiamos el user_password por hash.
+    - Creamos la constante hash y nos traemos el hashPassword del hashUtils(se importa automáticamente si lo tenemos abierto).
+    - En el result = cambiamos el user_password por hash.
+
+Vamos a crear el axiosHelper.js y .env para ello vamos a client:
+  axiosHelper = "client/src/Helpers/axiosHelper.js"
+  .env = "client/.env" 
+  En .env creamos un VITE con nuestra URL:
+    Ej: "VITE_SERVER_URL=http://localhost:4000/"
+
+  En axiosHelper:
+    - Importamos axios y creamos la constante (en nuestro caso) "pixarUrl" e importamos el .env
+    - Exportamos el fetchData (async) con url, method, data y headers
+
+Volvemos a Register.jsx ('client/src/pages/auth/register/register.jsx):
+  Eliminamos axios y lo sustituimos por el fetchData del axiosHelper que acabamos de crear.
+  Borramos la importación axios que está creada.
+
 
 
 
