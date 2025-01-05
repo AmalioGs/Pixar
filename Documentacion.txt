@@ -1,0 +1,74 @@
+Config DB
+
+Utilizamos para acceder a la base de datos
+
+Modificamos .env con los datos
+
+Dentro de server creamos carpeta config / db.js
+
+Creamos un import executeQuery en el app.js "solo para probar"
+
+Creamos carpeta middleware con su multer
+
+Crear carpeta user en modules
+	-user.routes.js
+		importar en app
+	-user.controller
+	-user.dal.js
+
+Borramos la carpeta 'routes'
+
+Limpiar front/back, quitar css de todo lo predeterminado
+
+Crear carpeta context/ContextProvider.jsx en src
+	-Si da fallo el chiken modificar eslint.config escribir:
+		"react/prop/types": "disable",
+
+Poner Container app.jsx
+
+Crear en src carpeta routes, components, pages
+
+Crear las rutas y añadirlas
+
+Añadir al main de client ('client/src/main.jsx'):
+	import 'bootstrap/dist/css/bootstrap.min.css';
+
+  *REGISTER*
+
+Hacemos el formulario de registro o bien con bootstrap o copiamos y pegamos el que tenemos.
+
+Hacemos el initialValue con los parámetros iniciales.
+
+Controlamos el form con handleChange creando un Hook para controlar el estado.
+
+Nos vamos al back/modules/user:
+  En routes:
+    Ponemos el post
+
+  En controller:
+    - Creamos register y comprobamos en el try (async) con un console.log que nos llega bien los datos del form
+    - Si esta bien, hacemos destructuring en el try de los datos del form y hacemos validaciones("Debes cumplimentar... Contraseñas no coinciden...") para ello lo recogemos a través de throw new Error y en el catch ponemos: 
+      "res.status(400).json({msg: error.message});"
+
+  En dal:
+    - Creamos la clase UserDal (si no está creada), con register (async), hacemos la exportación por defecto "new UserDal()" y en el try hacemos una llamada al SQL con los datos que pedimos en el form. 
+    - Importamos executeQuery (abrimos db.js para que sea automatico) y revisamos que la importación termine en .js
+    - Hacemos el .log de los result y el error y si está OK, borramos y ponemos "throw error".
+
+  (Si está todo bien, pasamos a hashear)
+  Para ello creamos carpeta utils:
+    'server/utils/hashUtils.js'
+  En hashUtils:
+    Importamos bcrypt.
+    Exportamos hashPassword (async) y encryptamos tantas veces como queramos entre paréntesis, lo normal, 10.
+
+  En controller:
+    Creamos la constante hash y nos traemos el hashPassword del hashUtils(se importa automáticamente si lo tenemos abierto).
+    En el result = cambiamos el user_password por hash.
+
+
+
+
+
+
+
