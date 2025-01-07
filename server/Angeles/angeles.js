@@ -1,1 +1,0 @@
-Odio a todos
