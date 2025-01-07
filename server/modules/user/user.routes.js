@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', userController.getUser)
 router.post('/register', userController.register)
 router.post('/login', userController.login);
+router.get('/pelis', userController.pelis);
 router.get('/findUserById', verifyToken, userController.findUserById);
 
 export default router;
