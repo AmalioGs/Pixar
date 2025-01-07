@@ -41,7 +41,7 @@ export const Register = () => {
       try {
         const res = await fetchData("user/register", "post", register);
         console.log(res);
-        navigate('/login');
+        navigate('/');
         
       } catch (error) {
         if(error){
@@ -117,7 +117,7 @@ export const Register = () => {
         <Button variant="primary" onClick={onSubmit}>
           Registrar
         </Button>
-        <Button className='ms-2' variant="success" onClick={()=>navigate('/login')}>
+        <Button className='ms-2' variant="success" onClick={()=>navigate('/')}>
           ¿Ya tienes una cuenta?
         </Button>
       </Form>
