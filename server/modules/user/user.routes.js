@@ -8,5 +8,6 @@ router.get('/', userController.getUser)
 router.post('/register', userController.register)
 router.post('/login', userController.login);
 router.get('/findUserById', verifyToken, userController.findUserById);
+router.post('/loginPrueba', userController.prueba);
 
 export default router;
