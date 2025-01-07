@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchData } from "../../../Helpers/axiosHelper.js";
+import { PixarContext } from "../../../context/ContextProvider.jsx";
 
 const initialValue = {
   user_email: "",
@@ -11,6 +12,8 @@ const initialValue = {
 export const Login = () => {
   const [login, setLogin] = useState(initialValue);
   const [msg, setMsg] = useState("");
+  const {setUser, setToken} = useContext(PixarContext)
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,6 +28,9 @@ export const Login = () => {
       localStorage.setItem("token", token)
 
       const resultUser = await fetchData("user/findUserById", "get", null, {authorization: `bearer ${token}`})
+      navigate('/home')
+      setUser(resultUser.data);
+      setToken(token);
 
     } catch (error) {
       setMsg(error.response?.data?.message);
