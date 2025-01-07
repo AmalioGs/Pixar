@@ -97,6 +97,10 @@ Empezamos a crear el login.jsx
   Crear verifyToken en el middleware del server 
   Creamos una función para sacar el ID del token en tokenUtils
   Crear getUserById en user.dal
+  Crear navigate del login dentro del onSubmit que nos redirija al home
+  Crear useState en ContextProvider.jsx de user y de token
+  Crear dentro de useEffect una función asíncrona 
+  Pasar los seteos en el onSubmit del login.jsx
 
 
 
