@@ -81,6 +81,24 @@ Volvemos a Register.jsx ('client/src/pages/auth/register/register.jsx):
   Borramos la importación axios que está creada.
 
 
+* LOGIN *
+Empezamos a crear el login.jsx
+  Crear formulario
+  Creamos la ruta post del login en el servidor, con su userController server/modules/user.routes
+  Creamos fetchData dentro del onSubmit en el login
+  Creamos en user.dal el findUserByEmail para el login del user.controller
+  Vamos a hashUtils para crear una función que compare las Contraseñas
+  En el user controller llamar a la función creada
+  En la carpeta utils crear tokenUtils.js donde crearemos las funciones de los tokens
+  Crear la token_key en .env
+  Llamar generateToken en user.controller
+  Guardar datos en el localStorage dentro del onSubmit del login
+  Crear ruta get findUserById 
+  Crear verifyToken en el middleware del server 
+  Creamos una función para sacar el ID del token en tokenUtils
+  Crear getUserById en user.dal
+
+
 
 
 

@@ -10,3 +10,13 @@ export const hashPassword = async (password) =>{
     
   }
 }
+
+export const comparePassword = async (password, hash) =>{
+  try {
+    const match = await bcrypt.compare(password, hash);
+    return match; 
+
+  } catch (error) {
+    throw error
+  }
+}

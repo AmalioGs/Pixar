@@ -10,6 +10,29 @@ class UserDal {
       throw error
     }
   }
+
+  findUserByEmail = async (user_email) =>{
+    try {
+      let sql = "SELECT * FROM user WHERE user_email = ? AND user_is_deleted = 0"
+      const result = await executeQuery(sql, [user_email])
+      return result
+
+    } catch (error) {
+      throw error
+    }
+  }
+
+  getUserById = async (id) =>{
+    try {
+      let sql = "SELECT * FROM user WHERE user_id = ? AND user_is_deleted = 0"
+      const user = await executeQuery(sql, [id])
+      return user
+      
+    } catch (error) {
+      throw error
+      
+    }
+  }
 }
 
 export default new UserDal()

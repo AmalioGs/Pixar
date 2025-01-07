@@ -113,13 +113,12 @@ export const Register = () => {
             onChange={handleChange} 
             name='accept'/>
         </Form.Group>
-        <p>Ya estás registrado?<Link to='/login'>Login aquí</Link></p>
         <p style={{color:"red"}}>{msg}</p>
         <Button variant="primary" onClick={onSubmit}>
           Registrar
         </Button>
-        <Button className='ms-2' variant="primary" onClick={()=>navigate('/login')}>
-          Cancelar
+        <Button className='ms-2' variant="success" onClick={()=>navigate('/login')}>
+          ¿Ya tienes una cuenta?
         </Button>
       </Form>
     </Col>
