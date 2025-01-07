@@ -34,7 +34,7 @@ export const AppRoutes = () => {
         }
         <Route path="*" element={<ErrorPage/>} />
       </Routes>
-      <FooterApp />
+      {user && <FooterApp />}
     </BrowserRouter>
   );
 };
