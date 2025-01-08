@@ -33,6 +33,34 @@ class UserDal {
       
     }
   }
+
+  editUser = async (data, file) =>{
+    const {user_name, user_lastname, user_address, user_birthdate, user_phone, user_description, user_id} = data;
+
+    try {
+      let sql = "UPDATE user SET user_name = ?, user_lastname = ?, user_address = ?, user_birthdate = ?, user_phone = ?, user_description = ? WHERE user_id = ?"
+      let values = [user_name, user_lastname, user_address, user_birthdate, user_phone, user_description, user_id]
+      if(file){
+        sql = "UPDATE user SET user_name = ?, user_lastname = ?, user_address = ?, user_birthdate = ?, user_phone = ?, user_description = ?, user_avatar = ? WHERE user_id = ?"
+        values = [user_name, user_lastname, user_address, user_birthdate, user_phone, user_description, file.filename, user_id]
+      }
+      const result = await executeQuery(sql, values);
+      return result
+      
+    } catch (error) {
+      console.log(error);
+      throw error
+    }
+  }
+
+  addFavFilm = async (values) =>{
+    try {
+      let sql = "INSERT INTO film ()"
+    } catch (error) {
+      console.log(error);
+      throw error
+    }
+  }
 }
 
 export default new UserDal()

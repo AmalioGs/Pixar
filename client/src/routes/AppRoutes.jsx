@@ -9,6 +9,7 @@ import { FooterApp } from "../components/FooterApp/FooterApp";
 import { ErrorPage } from "../pages/ErrorPage/ErrorPage";
 import { PixarContext } from "../context/ContextProvider";
 import { OneFilm } from "../pages/Dashboard/Film/OneFilm";
+import { EditUser } from "../pages/User/EditUser";
 
 export const AppRoutes = () => {
   const {user} = useContext(PixarContext)
@@ -29,6 +30,7 @@ export const AppRoutes = () => {
           <>
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<User />} />
+          <Route path="/editUser" element={<EditUser />} />
           <Route path="/oneFilm/:id" element={<OneFilm />} />
           </>
         }

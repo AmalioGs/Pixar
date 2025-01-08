@@ -33,7 +33,7 @@ export const NavbarApp = () => {
                 </Nav.Link>
                 <NavDropdown title="Perfil" id="navbarScrollingDropdown">
                   <NavDropdown.Item as={Link} to="/profile">Mi perfil</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/editProfile">
+                  <NavDropdown.Item as={Link} to="/editUser">
                     Editar perfil
                   </NavDropdown.Item>
                 </NavDropdown>

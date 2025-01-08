@@ -82,5 +82,35 @@ class UserController {
     
     res.status(200).json(user)
   }
+
+  editUser = async (req, res) =>{
+    try {
+      let data = JSON.parse(req.body.edit);
+      let file = req.file
+      const result = await UserDal.editUser(data, file);
+      
+      let img = null;
+      if(req.file){
+        img = req.file.filename
+      }
+      console.log(img);
+      
+      res.status(200).json({img})
+
+      
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  }
+  addFavFilm = async (req, res) =>{
+    try {
+      const {film_id, title, film_image} = req.body
+      const res = await UserDal.addFavFilm([film_id, title, film_image])
+            
+    } catch (error) {
+      res.status(500).json(error)
+    }
+    console.log(req.body);
+  }
 }
 export default new UserController();

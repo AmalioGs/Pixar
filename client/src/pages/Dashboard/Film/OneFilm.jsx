@@ -2,34 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { fetchData } from "../../../Helpers/axiosHelper.js";
 
 export const OneFilm = () => {
   const { id } = useParams();
   const [film, setFilm] = useState({});
   const [characters, setCharacters] = useState();
-  // const [char, setChar] = useState({})
   console.log("FILMMMMMMMMMMMMM", film);
 
-  /*   useEffect(() => {
-    axios
-            .get(`http://93.93.117.48/api/films/${id}`)
-            .then((res)=>{
-              console.log("********************",res);
-              setFilm(res.data)
-            })
-
-            .catch((error)=>{
-              console.log(error);
-            })
-  }, []) */
-  /* Al final lo he planteado con el useEffect, pero vamos que se puede hacer igual que antes, desde un botón, que cuando se pulse dicho botón se carguen los personajes */
   useEffect(() => {
     const fetchFilmAndCharacters = async () => {
       try {
         // Obtener datos de la película
-        const res = await axios.get(
-          `http://93.93.117.48/api/films/${id}`
-        );
+        const res = await axios.get(`http://93.93.117.48/api/films/${id}`);
         const filmData = res.data;
 
         setFilm(filmData);
@@ -53,18 +38,16 @@ export const OneFilm = () => {
     fetchFilmAndCharacters();
   }, []);
 
-  // const onSubmit = () =>{
-  //   axios
-  //   .get(`http://93.93.117.48/api/characters/${id}`)
-  //   .then((res)=>{
-  //     console.log(res);
-  //     setChar([...char])
-  //   })
-
-  //   .catch((error)=>{
-  //     console.log(error);
-  //   })
-  // }
+  const addFavFilm = async () =>{
+    try {
+      await fetchData("user/favFilm", "post", film)
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+  }
 
   return (
     <>
@@ -76,6 +59,9 @@ export const OneFilm = () => {
     </Button> */}
       <div>
         <img src={film.film_image} alt="" />
+      </div>
+      <div onClick={addFavFilm} className="fs-1">
+        ⭐
       </div>
       <div>
         <strong>Título:</strong> {film.title} ({film.original_title}){" "}
@@ -90,16 +76,17 @@ export const OneFilm = () => {
         <strong>Sinopsis:</strong> {film.argument}
       </div>
       {/* Mostramos los personajes iterando el estado characters, que es un estado que ha sido rellenado con todos los personajes de cada película, le he dado unos estilos en línea, pero lo suyo sería meterlo en un CSS*/}
-      <div className="fs-3 text-center">Personajes que aparecen en la película:</div>
-      <div className="d-flex flex-wrap justify-content-center">
+      <div className="fs-3 text-center">
+        Personajes que aparecen en la película:
+      </div>
+      <div className="d-flex flex-wrap justify-content-center gap-2">
         {characters?.map((character, index) => (
-          <>
             <img
               src={character.character_image}
+              key={index}
               alt={character.name}
               style={{ width: "200px", height: "200px", objectFit: "cover" }}
             />
-          </>
         ))}
       </div>
     </>
