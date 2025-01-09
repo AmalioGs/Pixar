@@ -4,7 +4,7 @@ import UserDal from "./user.dal.js";
 
 class UserController {
   getUser = (req, res) => {
-    res.status(200).json("HOLAAAAAAAAAAAAAAA, PA TI MI COLAAAA");
+    res.status(200).json("Todo ok");
   };
 
   register = async (req, res) => {

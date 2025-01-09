@@ -55,7 +55,9 @@ class UserDal {
 
   addFavFilm = async (values) =>{
     try {
-      let sql = "INSERT INTO film ()"
+      let sql = "INSERT INTO film (film_id, film_title, film_image) VALUES (?, ?, ?)"
+      const result = await executeQuery(sql, values);
+      
     } catch (error) {
       console.log(error);
       throw error

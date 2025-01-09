@@ -43,7 +43,7 @@ export const Home = () => {
     <div className='d-flex justify-content-center gap-2 flex-wrap'>
       {films.map((elem) =>{
          return(
-            <img onClick={()=>navigate(`/oneFilm/${elem.film_id}`)} src={elem.film_image} key={elem.film_id} alt="" style={{ cursor: "pointer" }}/>
+            <img onClick={()=>navigate(`/oneFilm/${elem.film_id}`)} src={elem.film_image} key={elem.film_id} alt="" style={{ cursor: "pointer" }} />
           )
         })
       }
