@@ -1,13 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchData } from "../../../Helpers/axiosHelper.js";
+import { PixarContext } from "../../../context/ContextProvider.jsx";
 
 export const OneFilm = () => {
   const { id } = useParams();
   const [film, setFilm] = useState({});
   const [characters, setCharacters] = useState();
+  const [msg, setMsg] = useState("");
+  const { user } = useContext(PixarContext);
+  const navigate = useNavigate();
+
   console.log("FILMMMMMMMMMMMMM", film);
 
   useEffect(() => {
@@ -40,11 +45,14 @@ export const OneFilm = () => {
 
   const addFavFilm = async () =>{
     try {
-      await fetchData("user/favFilm", "post", film)
+      const data = {...film, user_id: user.user_id }
+      console.log(data);
+      const res = await fetchData("user/favFilm", "post", data);
+      navigate('/home');
       
     } catch (error) {
       console.log(error);
-      
+      setMsg("Ya está en favoritos");
     }
     
   }
@@ -60,8 +68,8 @@ export const OneFilm = () => {
       <div>
         <img src={film.film_image} alt="" />
       </div>
-      <div onClick={addFavFilm} className="fs-1">
-        ⭐
+      <div >
+        <p onClick={addFavFilm} className="fs-1" >⭐ <span style={{color:"green"}}>{msg}</span></p>
       </div>
       <div>
         <strong>Título:</strong> {film.title} ({film.original_title}){" "}

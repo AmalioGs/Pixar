@@ -104,13 +104,14 @@ class UserController {
   }
   addFavFilm = async (req, res) =>{
     try {
-      const {film_id, title, film_image} = req.body
-      const res = await UserDal.addFavFilm([film_id, title, film_image])
-            
+      const {film_id, title, film_image, user_id} = req.body
+      const response = await UserDal.addFavFilm([film_id, title, film_image, user_id])
+      res.status(200).json({ msg: "Todo OK en addFilm!" });
+
     } catch (error) {
       res.status(500).json(error)
+      console.log(error);
     }
-    console.log(req.body);
   }
 }
 export default new UserController();
