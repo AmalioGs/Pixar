@@ -9,6 +9,7 @@ const router = express.Router();
 router.post('/login', userController.login);
 router.post('/register', userController.register);
 router.post('/favFilm', userController.addFavFilm);
+router.get('/getFavFilm/:id', userController.getFavFilm);
 router.put('/editUser', multer("users"), userController.editUser);
 router.get('/findUserById', verifyToken, userController.findUserById);
 

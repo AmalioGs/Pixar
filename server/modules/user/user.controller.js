@@ -113,5 +113,17 @@ class UserController {
       console.log(error);
     }
   }
+  getFavFilm = async (req, res) =>{
+    try {
+      const {id} = req.params
+      console.log("REQQQUSER", req.params);
+      
+      const response = await UserDal.getFavFilm([id])
+      res.status(200).json(response)
+
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  }
 }
 export default new UserController();

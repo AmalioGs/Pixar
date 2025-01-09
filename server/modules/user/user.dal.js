@@ -63,6 +63,19 @@ class UserDal {
       throw error
     }
   }
+
+  getFavFilm = async (id) => {
+    try {
+      let sql = "SELECT * FROM film WHERE user_id = ?"
+      const favFilm = await executeQuery(sql,[id]);
+      
+      return favFilm
+
+    } catch (error) {
+      throw error
+      
+    }
+  }
 }
 
 export default new UserDal()

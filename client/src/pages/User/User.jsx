@@ -1,13 +1,30 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PixarContext } from '../../context/ContextProvider'
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import fotoPerfil from '../../assets/avatar.png'
 import { useNavigate } from 'react-router-dom';
+import { fetchData } from '../../Helpers/axiosHelper.js';
 
 export const User = () => {
   const {user} = useContext(PixarContext);
   const navigate = useNavigate();
+  const [favFilm, setFavFilm] = useState([])
 
+  useEffect(()=>{
+    const getFavFilm = async ()=>{
+      try {
+        const res = await fetchData(`user/getFavFilm/${user.user_id}`, 'get')
+        setFavFilm(res.data)
+        
+        
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
+    getFavFilm() 
+  }, [])
+    
   return (
     <>
     <Container>
@@ -26,8 +43,19 @@ export const User = () => {
       </Row>
       <Row>
         <Col>
-        Mis películas favoritas:
+        <h3>Mis películas favoritas:</h3>
+        {favFilm?.map(elem=>{
+          return(
+            <img 
+            key={elem.film_id}
+            src={elem.film_image}
+            onClick={()=>navigate(`/oneFilm/${elem.film_id}`)}
+            />
+          )
+        })}
         </Col>
+
+
       </Row>
     </Container>
     </>
